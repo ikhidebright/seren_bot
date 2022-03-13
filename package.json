@@ -1,0 +1,29 @@
+{
+  "name": "seren-slack-bot",
+  "version": "2.0.0",
+  "description": "Slack bot for seren",
+  "main": "dist/src/app.js",
+  "scripts": {
+    "dev": "ts-node-dev --experimental-worker --respawn --transpile-only src/app.ts",
+    "build": "tsc ",
+    "start": "node -r tsconfig-paths/register ."
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@slack/bolt": "^3.6.0",
+    "config": "^3.3.6",
+    "dayjs": "^1.10.8",
+    "dotenv": "^16.0.0",
+    "pino": "^7.0.2",
+    "pino-pretty": "^7.1.0",
+    "ts-node": "^10.7.0",
+    "tsconfig-paths": "^3.13.0"
+  },
+  "devDependencies": {
+    "@types/config": "0.0.39",
+    "@types/node": "^16.11.0",
+    "@types/pino": "^6.3.11",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.4"
+  }
+}
