@@ -59,6 +59,7 @@ slackApp.command(
         // Text in the notification
         text: "Message from Test slackApp",
       });
+      console.log("view", JSON.stringify(body["actions"][0]));
     } catch (error) {
       console.error(error);
     }
@@ -81,7 +82,7 @@ slackApp.action("text1234", async ({ ack, body, payload, context }: any) => {
       blocks: [
         {
           type: "section",
-          block_id: "section678",
+          block_id: "section679",
           text: {
             type: "mrkdwn",
             text: "What are your favorite hobbies?",
