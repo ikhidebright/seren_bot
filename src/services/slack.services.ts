@@ -6,13 +6,6 @@ slackApp.command("/bot", async ({ ack, body, payload, context }: any) => {
   // Acknowledge the command request
   ack();
 
-  console.log("contextcontextcontext", {
-    id: body["id"],
-    name: body["name"],
-    values: body["state"],
-    actions: body["actions"],
-  });
-
   try {
     const result = await slackApp.client.chat.postMessage({
       token: context.botToken,
@@ -64,7 +57,14 @@ slackApp.command("/bot", async ({ ack, body, payload, context }: any) => {
       // Text in the notification
       text: "Message from Test slackApp",
     });
-    console.log(result);
+
+    console.log("contextcontextcontext", {
+      id: result.id,
+      name: result.name,
+      values: result.state,
+      actions: result.actions,
+    });
+    // console.log(result);
   } catch (error) {
     console.error(error);
   }
