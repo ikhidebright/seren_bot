@@ -64,7 +64,6 @@ slackApp.command("/bot", async ({ ack, body, payload, context }: any) => {
       values: result.state,
       actions: result.actions,
     });
-    // console.log(result);
   } catch (error) {
     console.error(error);
   }
@@ -75,7 +74,7 @@ slackApp.action("text1234", async ({ ack, body, context }: any) => {
   // Acknowledge the button request
   ack();
 
-  console.log("contextcontextcontext", body);
+  // console.log("contextcontextcontext", body);
 
   try {
     // Update the message
@@ -142,7 +141,13 @@ slackApp.action("text1234", async ({ ack, body, context }: any) => {
       ],
       text: "Message from Test slackApp",
     });
-    console.log(result);
+
+    console.log("contextcontextcontext", {
+      id: result.id,
+      name: result.name,
+      values: result.state,
+      actions: result.actions,
+    });
   } catch (error) {
     console.error(error);
   }
