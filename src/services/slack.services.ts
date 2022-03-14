@@ -29,9 +29,11 @@ slackApp.command(
 );
 
 // get favorite hooby
-slackApp.action("text1234", async ({ ack, body, payload, context }: any) => {
+slackApp.action("hau", async ({ ack, body, payload, context }: any) => {
   // Acknowledge the button request
   ack();
+
+  const { data } = await http.post("/api/questions/favs");
 
   try {
     // Update the message
@@ -41,61 +43,7 @@ slackApp.action("text1234", async ({ ack, body, payload, context }: any) => {
       ts: body.message.ts,
       // Channel of message
       channel: body.channel.id,
-      blocks: [
-        {
-          type: "section",
-          block_id: "section679",
-          text: {
-            type: "mrkdwn",
-            text: "What are your favorite hobbies?",
-          },
-          accessory: {
-            action_id: "text123456",
-            type: "multi_static_select",
-            placeholder: {
-              type: "plain_text",
-              text: "Select favorite hobbies",
-            },
-            options: [
-              {
-                text: {
-                  type: "plain_text",
-                  text: "Football",
-                },
-                value: "value-0",
-              },
-              {
-                text: {
-                  type: "plain_text",
-                  text: "Music",
-                },
-                value: "value-1",
-              },
-              {
-                text: {
-                  type: "plain_text",
-                  text: "Sleep",
-                },
-                value: "value-2",
-              },
-              {
-                text: {
-                  type: "plain_text",
-                  text: "Movies",
-                },
-                value: "value-3",
-              },
-              {
-                text: {
-                  type: "plain_text",
-                  text: "Basketball",
-                },
-                value: "value-4",
-              },
-            ],
-          },
-        },
-      ],
+      blocks: data,
       text: "Message from Test slackApp",
     });
     console.log("view", JSON.stringify(body["actions"][0]));
@@ -105,7 +53,7 @@ slackApp.action("text1234", async ({ ack, body, payload, context }: any) => {
 });
 
 // end
-slackApp.action("text123456", async ({ ack, body, context, say }: any) => {
+slackApp.action("favs", async ({ ack, body, context, say }: any) => {
   ack();
   say("thank you");
 });
