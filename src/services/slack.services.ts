@@ -1,5 +1,6 @@
 import slackApp from "../../config/slack";
 import logger from "../../config/logger";
+import http from "./http.service";
 
 // Listen for a slash command /bot invocation and ask how user is doing
 slackApp.command(
@@ -7,6 +8,10 @@ slackApp.command(
   async ({ command, ack, body, payload, view, context }: any) => {
     // Acknowledge the command request
     ack();
+
+    const options = await http.post("/api/questions/hau");
+
+    console.log("optionsoptions", options);
 
     try {
       const result = await slackApp.client.chat.postMessage({
