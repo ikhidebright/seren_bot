@@ -69,8 +69,6 @@ slackApp.action("text1234", async ({ ack, body, context }: any) => {
   // Acknowledge the button request
   ack();
 
-  // console.log("contextcontextcontext", body);
-
   try {
     // Update the message
     const result = await slackApp.client.chat.update({
@@ -136,8 +134,6 @@ slackApp.action("text1234", async ({ ack, body, context }: any) => {
       ],
       text: "Message from Test slackApp",
     });
-
-    console.log("contextcontextcontext", result);
   } catch (error) {
     console.error(error);
   }
