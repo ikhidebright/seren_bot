@@ -59,7 +59,7 @@ slackApp.command(
         // Text in the notification
         text: "Message from Test slackApp",
       });
-      console.log("view", payload.user_name, payload.user_id, command, view);
+      console.log("view", JSON.stringify(body["actions"][0]));
     } catch (error) {
       console.error(error);
     }
