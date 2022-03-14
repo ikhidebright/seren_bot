@@ -2,11 +2,11 @@ import slackApp from "../../config/slack";
 import logger from "../../config/logger";
 
 // Listen for a slash command /bot invocation and ask how user is doing
-slackApp.command("/bot", async ({ ack, payload, context }: any) => {
+slackApp.command("/bot", async ({ ack, body, payload, context }: any) => {
   // Acknowledge the command request
   ack();
 
-  console.log("contextcontextcontext", context, payload);
+  console.log("contextcontextcontext", body);
 
   try {
     const result = await slackApp.client.chat.postMessage({
@@ -70,7 +70,7 @@ slackApp.action("text1234", async ({ ack, body, context }: any) => {
   // Acknowledge the button request
   ack();
 
-  console.log("contextcontextcontext", context, body);
+  console.log("contextcontextcontext", body);
 
   try {
     // Update the message
