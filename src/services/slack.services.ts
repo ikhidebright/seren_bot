@@ -58,7 +58,7 @@ slackApp.command("/bot", async ({ ack, body, payload, context }: any) => {
       text: "Message from Test slackApp",
     });
 
-    console.log("payload", payload);
+    console.log("body", payload.user_name, payload.user_id, body);
   } catch (error) {
     console.error(error);
   }
