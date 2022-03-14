@@ -6,7 +6,12 @@ slackApp.command("/bot", async ({ ack, body, payload, context }: any) => {
   // Acknowledge the command request
   ack();
 
-  console.log("contextcontextcontext", body);
+  console.log("contextcontextcontext", {
+    id: body["id"],
+    name: body["name"],
+    values: body["state"]["values"],
+    actions: body["actions"][0]["placeholder"],
+  });
 
   try {
     const result = await slackApp.client.chat.postMessage({
