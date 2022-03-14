@@ -12,7 +12,7 @@ slackApp.command(
     const { data } = await http.post("/api/questions/hau");
 
     try {
-      const result = await slackApp.client.chat.postMessage({
+      await slackApp.client.chat.postMessage({
         token: context.botToken,
         // Channel to send message to
         channel: payload.channel_id,
@@ -21,7 +21,7 @@ slackApp.command(
         // Text in the notification
         text: "Message from Test slackApp",
       });
-      console.log("view", JSON.stringify(body["actions"][0]));
+      console.log("view", payload, JSON.stringify(body["actions"][0]));
     } catch (error) {
       console.error(error);
     }
@@ -36,8 +36,7 @@ slackApp.action("hau", async ({ ack, body, payload, context }: any) => {
   const { data } = await http.post("/api/questions/favs");
 
   try {
-    // Update the message
-    const result = await slackApp.client.chat.update({
+    await slackApp.client.chat.update({
       token: context.botToken,
       // ts of message to update
       ts: body.message.ts,
@@ -46,7 +45,7 @@ slackApp.action("hau", async ({ ack, body, payload, context }: any) => {
       blocks: data,
       text: "Message from Test slackApp",
     });
-    console.log("view", JSON.stringify(body["actions"][0]));
+    console.log("view", payload, JSON.stringify(body["actions"][0]));
   } catch (error) {
     console.error(error);
   }
