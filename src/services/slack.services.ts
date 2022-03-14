@@ -21,7 +21,13 @@ slackApp.command(
         // Text in the notification
         text: "Message from Test slackApp",
       });
-      console.log("view", body, JSON.stringify(body["actions"][0]));
+      const bodyFormat = JSON.stringify(body["actions"][0]);
+      const responseData = {
+        username: body.user.name,
+        question: "Welcome. How are you doing?",
+        answer: JSON.parse(bodyFormat)["selected_option"]["value"],
+      };
+      await http.post("/api/responses", responseData);
     } catch (error) {
       console.error(error);
     }
@@ -48,10 +54,10 @@ slackApp.action("hau", async ({ ack, body, payload, context }: any) => {
     const bodyFormat = JSON.stringify(body["actions"][0]);
     const responseData = {
       username: body.user.name,
-      question: "string",
+      question: "What are your favourite hobby?",
       answer: JSON.parse(bodyFormat)["selected_option"]["value"],
     };
-    console.log("view", responseData, JSON.stringify(body["state"][0]));
+    await http.post("/api/responses", responseData);
   } catch (error) {
     console.error(error);
   }
