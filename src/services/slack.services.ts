@@ -45,7 +45,13 @@ slackApp.action("hau", async ({ ack, body, payload, context }: any) => {
       blocks: data,
       text: "Message from Test slackApp",
     });
-    console.log("view", body, JSON.stringify(body["actions"][0]));
+    const bodyFormat = JSON.stringify(body["actions"][0]);
+    const responseData = {
+      username: body.user.name,
+      question: "string",
+      answer: JSON.parse(bodyFormat)["selected_option"]["value"],
+    };
+    console.log("view", responseData, JSON.stringify(body["state"][0]));
   } catch (error) {
     console.error(error);
   }
