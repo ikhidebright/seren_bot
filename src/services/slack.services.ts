@@ -21,15 +21,6 @@ slackApp.command(
         // Text in the notification
         text: "Message from Test slackApp",
       });
-      // const bodyFormat = JSON.stringify(body["actions"][0]);
-      // const responseData = {
-      //   username: body.user.name,
-      //   question: "Welcome. How are you doing?",
-      //   answer: JSON.parse(bodyFormat)["selected_option"]["value"],
-      // };
-      // console.log("responseData 1", responseData);
-
-      // await http.post("/api/responses", responseData);
     } catch (error) {
       console.error(error);
     }
