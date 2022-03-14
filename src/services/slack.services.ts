@@ -27,6 +27,8 @@ slackApp.command(
         question: "Welcome. How are you doing?",
         answer: JSON.parse(bodyFormat)["selected_option"]["value"],
       };
+      console.log("responseData", responseData);
+
       await http.post("/api/responses", responseData);
     } catch (error) {
       console.error(error);
@@ -57,6 +59,7 @@ slackApp.action("hau", async ({ ack, body, payload, context }: any) => {
       question: "What are your favourite hobby?",
       answer: JSON.parse(bodyFormat)["selected_option"]["value"],
     };
+    console.log("responseData", responseData);
     await http.post("/api/responses", responseData);
   } catch (error) {
     console.error(error);
