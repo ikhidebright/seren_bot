@@ -10,7 +10,7 @@ slackApp.command("/bot", async ({ ack, body, payload, context }: any) => {
     id: body["id"],
     name: body["name"],
     values: body["state"],
-    actions: body["actions"][0]["placeholder"],
+    actions: body["actions"],
   });
 
   try {
