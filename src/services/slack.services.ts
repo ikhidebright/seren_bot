@@ -11,56 +11,13 @@ slackApp.command(
 
     const { data } = await http.post("/api/questions/hau");
 
-    console.log("optionsoptions", data);
-
     try {
       const result = await slackApp.client.chat.postMessage({
         token: context.botToken,
         // Channel to send message to
         channel: payload.channel_id,
         // Include a button in the message (or whatever blocks you want!)
-        blocks: [
-          {
-            type: "section",
-            block_id: "section678",
-            text: {
-              type: "mrkdwn",
-              text: "Welcome. How are you doing?",
-            },
-            accessory: {
-              action_id: "text1234",
-              // NOTE: We can change type to external_select (to fetch options from an api as user types)
-              type: "static_select",
-              placeholder: {
-                type: "plain_text",
-                text: "Select how you're doing",
-              },
-              options: [
-                {
-                  text: {
-                    type: "plain_text",
-                    text: "Doing Well",
-                  },
-                  value: "value-0",
-                },
-                {
-                  text: {
-                    type: "plain_text",
-                    text: "Neutral",
-                  },
-                  value: "value-1",
-                },
-                {
-                  text: {
-                    type: "plain_text",
-                    text: "Feeling Lucky",
-                  },
-                  value: "value-2",
-                },
-              ],
-            },
-          },
-        ],
+        blocks: data,
         // Text in the notification
         text: "Message from Test slackApp",
       });
