@@ -6,6 +6,8 @@ slackApp.command("/bot", async ({ ack, payload, context }: any) => {
   // Acknowledge the command request
   ack();
 
+  console.log("contextcontextcontext", context, payload);
+
   try {
     const result = await slackApp.client.chat.postMessage({
       token: context.botToken,
@@ -67,6 +69,8 @@ slackApp.command("/bot", async ({ ack, payload, context }: any) => {
 slackApp.action("text1234", async ({ ack, body, context }: any) => {
   // Acknowledge the button request
   ack();
+
+  console.log("contextcontextcontext", context, body);
 
   try {
     // Update the message
