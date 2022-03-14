@@ -22,34 +22,35 @@ slackApp.command("/bot", async ({ ack, payload, context }: any) => {
           },
           accessory: {
             action_id: "text1234",
+            // NOTE: We can change type to external_select (to fetch options from an api as user types)
             type: "external_select",
             placeholder: {
               type: "plain_text",
               text: "Select how you're doing",
             },
-            // options: [
-            //   {
-            //     text: {
-            //       type: "plain_text",
-            //       text: "Doing Well",
-            //     },
-            //     value: "value-0",
-            //   },
-            //   {
-            //     text: {
-            //       type: "plain_text",
-            //       text: "Neutral",
-            //     },
-            //     value: "value-1",
-            //   },
-            //   {
-            //     text: {
-            //       type: "plain_text",
-            //       text: "Feeling Lucky",
-            //     },
-            //     value: "value-2",
-            //   },
-            // ],
+            options: [
+              {
+                text: {
+                  type: "plain_text",
+                  text: "Doing Well",
+                },
+                value: "value-0",
+              },
+              {
+                text: {
+                  type: "plain_text",
+                  text: "Neutral",
+                },
+                value: "value-1",
+              },
+              {
+                text: {
+                  type: "plain_text",
+                  text: "Feeling Lucky",
+                },
+                value: "value-2",
+              },
+            ],
           },
         },
       ],
