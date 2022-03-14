@@ -57,15 +57,13 @@ slackApp.command("/bot", async ({ ack, body, payload, context }: any) => {
       // Text in the notification
       text: "Message from Test slackApp",
     });
-
-    console.log("body", payload.user_name, payload.user_id, body);
   } catch (error) {
     console.error(error);
   }
 });
 
 // get favorite hooby
-slackApp.action("text1234", async ({ ack, body, context }: any) => {
+slackApp.action("text1234", async ({ ack, body, payload, context }: any) => {
   // Acknowledge the button request
   ack();
 
@@ -134,6 +132,7 @@ slackApp.action("text1234", async ({ ack, body, context }: any) => {
       ],
       text: "Message from Test slackApp",
     });
+    console.log("body", payload.user_name, payload.user_id, body);
   } catch (error) {
     console.error(error);
   }
