@@ -69,15 +69,19 @@ slackApp.action("hau", async ({ ack, body, payload, context }: any) => {
 // end
 slackApp.action("favs", async ({ ack, body, context, say }: any) => {
   ack();
-  say("thank you");
-  const bodyFormat = JSON.stringify(body["actions"][0]);
-  const responseData = {
-    username: body.user.name,
-    question: "What are your favourite hobby?",
-    answer: JSON.parse(bodyFormat)["selected_option"]["value"],
-  };
-  console.log("responseData 2", responseData);
-  await http.post("/api/responses", responseData);
+  try {
+    const bodyFormat = JSON.stringify(body["actions"][0]);
+    const responseData = {
+      username: body.user.name,
+      question: "What are your favourite hobby?",
+      answer: JSON.parse(bodyFormat)["selected_option"]["value"],
+    };
+    console.log("responseData 2", responseData);
+    await http.post("/api/responses", responseData);
+    say("thank you");
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 export default async function startSlackService() {
