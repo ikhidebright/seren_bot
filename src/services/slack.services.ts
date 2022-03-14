@@ -21,15 +21,15 @@ slackApp.command(
         // Text in the notification
         text: "Message from Test slackApp",
       });
-      const bodyFormat = JSON.stringify(body["actions"][0]);
-      const responseData = {
-        username: body.user.name,
-        question: "Welcome. How are you doing?",
-        answer: JSON.parse(bodyFormat)["selected_option"]["value"],
-      };
-      console.log("responseData 1", responseData);
+      // const bodyFormat = JSON.stringify(body["actions"][0]);
+      // const responseData = {
+      //   username: body.user.name,
+      //   question: "Welcome. How are you doing?",
+      //   answer: JSON.parse(bodyFormat)["selected_option"]["value"],
+      // };
+      // console.log("responseData 1", responseData);
 
-      await http.post("/api/responses", responseData);
+      // await http.post("/api/responses", responseData);
     } catch (error) {
       console.error(error);
     }
@@ -56,10 +56,10 @@ slackApp.action("hau", async ({ ack, body, payload, context }: any) => {
     const bodyFormat = JSON.stringify(body["actions"][0]);
     const responseData = {
       username: body.user.name,
-      question: "What are your favourite hobby?",
+      question: "Welcome. How are you doing?",
       answer: JSON.parse(bodyFormat)["selected_option"]["value"],
     };
-    console.log("responseData 2", responseData);
+    console.log("responseData 1", responseData);
     await http.post("/api/responses", responseData);
   } catch (error) {
     console.error(error);
@@ -70,6 +70,14 @@ slackApp.action("hau", async ({ ack, body, payload, context }: any) => {
 slackApp.action("favs", async ({ ack, body, context, say }: any) => {
   ack();
   say("thank you");
+  const bodyFormat = JSON.stringify(body["actions"][0]);
+  const responseData = {
+    username: body.user.name,
+    question: "What are your favourite hobby?",
+    answer: JSON.parse(bodyFormat)["selected_option"]["value"],
+  };
+  console.log("responseData 2", responseData);
+  await http.post("/api/responses", responseData);
 });
 
 export default async function startSlackService() {
