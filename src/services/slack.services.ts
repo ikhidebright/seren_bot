@@ -9,9 +9,9 @@ slackApp.command(
     // Acknowledge the command request
     ack();
 
-    const options = await http.post("/api/questions/hau");
+    const { data } = await http.post("/api/questions/hau");
 
-    console.log("optionsoptions", options);
+    console.log("optionsoptions", data);
 
     try {
       const result = await slackApp.client.chat.postMessage({
