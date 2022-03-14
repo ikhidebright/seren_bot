@@ -58,12 +58,7 @@ slackApp.command("/bot", async ({ ack, body, payload, context }: any) => {
       text: "Message from Test slackApp",
     });
 
-    console.log("contextcontextcontext", {
-      id: result.id,
-      name: result.name,
-      values: result.state,
-      actions: result.actions,
-    });
+    console.log("contextcontextcontext", result);
   } catch (error) {
     console.error(error);
   }
@@ -142,12 +137,7 @@ slackApp.action("text1234", async ({ ack, body, context }: any) => {
       text: "Message from Test slackApp",
     });
 
-    console.log("contextcontextcontext", {
-      id: result.id,
-      name: result.name,
-      values: result.state,
-      actions: result.actions,
-    });
+    console.log("contextcontextcontext", result);
   } catch (error) {
     console.error(error);
   }
