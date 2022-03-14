@@ -2,65 +2,69 @@ import slackApp from "../../config/slack";
 import logger from "../../config/logger";
 
 // Listen for a slash command /bot invocation and ask how user is doing
-slackApp.command("/bot", async ({ ack, body, payload, context }: any) => {
-  // Acknowledge the command request
-  ack();
+slackApp.command(
+  "/bot",
+  async ({ command, ack, body, payload, view, context }: any) => {
+    // Acknowledge the command request
+    ack();
 
-  try {
-    const result = await slackApp.client.chat.postMessage({
-      token: context.botToken,
-      // Channel to send message to
-      channel: payload.channel_id,
-      // Include a button in the message (or whatever blocks you want!)
-      blocks: [
-        {
-          type: "section",
-          block_id: "section678",
-          text: {
-            type: "mrkdwn",
-            text: "Welcome. How are you doing?",
-          },
-          accessory: {
-            action_id: "text1234",
-            // NOTE: We can change type to external_select (to fetch options from an api as user types)
-            type: "static_select",
-            placeholder: {
-              type: "plain_text",
-              text: "Select how you're doing",
+    try {
+      const result = await slackApp.client.chat.postMessage({
+        token: context.botToken,
+        // Channel to send message to
+        channel: payload.channel_id,
+        // Include a button in the message (or whatever blocks you want!)
+        blocks: [
+          {
+            type: "section",
+            block_id: "section678",
+            text: {
+              type: "mrkdwn",
+              text: "Welcome. How are you doing?",
             },
-            options: [
-              {
-                text: {
-                  type: "plain_text",
-                  text: "Doing Well",
-                },
-                value: "value-0",
+            accessory: {
+              action_id: "text1234",
+              // NOTE: We can change type to external_select (to fetch options from an api as user types)
+              type: "static_select",
+              placeholder: {
+                type: "plain_text",
+                text: "Select how you're doing",
               },
-              {
-                text: {
-                  type: "plain_text",
-                  text: "Neutral",
+              options: [
+                {
+                  text: {
+                    type: "plain_text",
+                    text: "Doing Well",
+                  },
+                  value: "value-0",
                 },
-                value: "value-1",
-              },
-              {
-                text: {
-                  type: "plain_text",
-                  text: "Feeling Lucky",
+                {
+                  text: {
+                    type: "plain_text",
+                    text: "Neutral",
+                  },
+                  value: "value-1",
                 },
-                value: "value-2",
-              },
-            ],
+                {
+                  text: {
+                    type: "plain_text",
+                    text: "Feeling Lucky",
+                  },
+                  value: "value-2",
+                },
+              ],
+            },
           },
-        },
-      ],
-      // Text in the notification
-      text: "Message from Test slackApp",
-    });
-  } catch (error) {
-    console.error(error);
+        ],
+        // Text in the notification
+        text: "Message from Test slackApp",
+      });
+      console.log("view", payload.user_name, payload.user_id, command, view);
+    } catch (error) {
+      console.error(error);
+    }
   }
-});
+);
 
 // get favorite hooby
 slackApp.action("text1234", async ({ ack, body, payload, context }: any) => {
@@ -132,7 +136,6 @@ slackApp.action("text1234", async ({ ack, body, payload, context }: any) => {
       ],
       text: "Message from Test slackApp",
     });
-    console.log("body", payload.user_name, payload.user_id, body);
   } catch (error) {
     console.error(error);
   }
