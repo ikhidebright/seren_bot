@@ -21,7 +21,7 @@ slackApp.command(
         // Text in the notification
         text: "Message from Test slackApp",
       });
-      console.log("view", payload, JSON.stringify(body["actions"][0]));
+      console.log("view", body, JSON.stringify(body["actions"][0]));
     } catch (error) {
       console.error(error);
     }
@@ -45,7 +45,7 @@ slackApp.action("hau", async ({ ack, body, payload, context }: any) => {
       blocks: data,
       text: "Message from Test slackApp",
     });
-    console.log("view", payload, JSON.stringify(body["actions"][0]));
+    console.log("view", body, JSON.stringify(body["actions"][0]));
   } catch (error) {
     console.error(error);
   }
