@@ -22,9 +22,9 @@ slackApp.command("/bot", async ({ ack, payload, context }: any) => {
             type: "mrkdwn",
             text: "Welcome. How are you doing?",
           },
+          value: "totototototototototototoototototootototototototototo",
           accessory: {
             action_id: "text1234",
-            value: "totototototototototototoototototootototototototototo",
             // NOTE: We can change type to external_select (to fetch options from an api as user types)
             type: "external_select",
             placeholder: {
