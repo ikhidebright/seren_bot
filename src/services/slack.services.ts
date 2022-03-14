@@ -19,7 +19,7 @@ slackApp.command(
         // Include a button in the message (or whatever blocks you want!)
         blocks: data,
         // Text in the notification
-        text: "Message from Test slackApp",
+        text: "Message from Test SerenApp",
       });
     } catch (error) {
       console.error(error);
@@ -42,7 +42,7 @@ slackApp.action("hau", async ({ ack, body, payload, context }: any) => {
       // Channel of message
       channel: body.channel.id,
       blocks: data,
-      text: "Message from Test slackApp",
+      text: "Message from Test SerenApp",
     });
     const bodyFormat = JSON.stringify(body["actions"][0]);
     const responseData = {
@@ -65,7 +65,6 @@ slackApp.action("favs", async ({ ack, body, payload, context, say }: any) => {
     question: "What are your favourite hobby?",
     answer: JSON.parse(bodyFormat).map((item: any) => item.value),
   };
-  // console.log("responseData 2", payload, bodyFormat);
   await http.post("/api/responses", responseData);
   say("thank you");
 });
